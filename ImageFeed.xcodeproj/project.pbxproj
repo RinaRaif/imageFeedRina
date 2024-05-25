@@ -17,6 +17,7 @@
 		5F844F4A2BF744580020AF52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F1854592BF5FDA7009543AD /* LaunchScreen.storyboard */; };
 		5F9050AC2BFA6F07002CCC4B /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9050AB2BFA6F07002CCC4B /* ImagesListCell.swift */; };
 		5F9050B02BFA833E002CCC4B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F1854512BF5FDA5009543AD /* Main.storyboard */; };
+		5F9399102BFF743500EF594F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F93990F2BFF743500EF594F /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		5F18545A2BF5FDA7009543AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5F18545C2BF5FDA7009543AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F9050AB2BFA6F07002CCC4B /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
+		5F93990F2BFF743500EF594F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +81,17 @@
 			children = (
 				5F18544F2BF5FDA5009543AD /* ImagesListViewController.swift */,
 				5F9050AB2BFA6F07002CCC4B /* ImagesListCell.swift */,
+				5F9399112BFF748000EF594F /* ProfilieLoading */,
 			);
 			path = ImagesList;
+			sourceTree = "<group>";
+		};
+		5F9399112BFF748000EF594F /* ProfilieLoading */ = {
+			isa = PBXGroup;
+			children = (
+				5F93990F2BFF743500EF594F /* ProfileViewController.swift */,
+			);
+			path = ProfilieLoading;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F9399102BFF743500EF594F /* ProfileViewController.swift in Sources */,
 				5F1854502BF5FDA5009543AD /* ImagesListViewController.swift in Sources */,
 				5F1854562BF5FDA5009543AD /* ImageFeed.xcdatamodeld in Sources */,
 				5F9050AC2BFA6F07002CCC4B /* ImagesListCell.swift in Sources */,

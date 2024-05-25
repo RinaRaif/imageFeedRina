@@ -8,8 +8,13 @@
 import UIKit
 
 final class ProfileViewController: UIViewController {
+    @IBOutlet private var avatarImageView: UIImage!
+    @IBOutlet private var userNameLabel: UILabel!
+    @IBOutlet private var userEmailLabel: UILabel!
+    @IBOutlet private var DescriptionLabel: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBOutlet private var logoutButton: UIButton!
+    
+    @IBAction private func didTapLogoutButton() {
     }
 }
