@@ -58,7 +58,6 @@ final class ProfileViewController: UIViewController {
         userName.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(userName)
         
-        
         let userNickName = UILabel()
         userNickName.text = "@ekaterina_nov"
         userNickName.textColor = .ypGrayIOS
@@ -66,7 +65,6 @@ final class ProfileViewController: UIViewController {
         
         userNickName.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(userNickName)
-        
         
         let userDescription = UILabel()
         userDescription.text = "Hello, world"
@@ -105,7 +103,7 @@ final class ProfileViewController: UIViewController {
                 view.removeFromSuperview()
             } else {
                 if let imageView = view as? UIImageView {
-                    imageView.image = UIImage(named: "tab_editorial_active")
+                    imageView.image = UIImage(named: "tab_profile_no_active")
                     imageView.tintColor = .ypGrayIOS
                 }
             }

@@ -115,18 +115,6 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="430" placeholderIntrinsicHeight="414" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="tO8-H0-SJn">
                                         <rect key="frame" x="0.0" y="0.0" width="430" height="414"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wyS-pz-zYm" userLabel="didTapShareButton">
-                                        <rect key="frame" x="182" y="810" width="50" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="cjh-eK-Nu4"/>
-                                            <constraint firstAttribute="width" constant="50" id="ydE-g2-kVs"/>
-                                        </constraints>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="share_button"/>
-                                        <connections>
-                                            <action selector="didTapShareButton:" destination="3sp-Ft-3Yk" eventType="touchUpInside" id="aTs-LN-GlM"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="tO8-H0-SJn" firstAttribute="leading" secondItem="Qlv-CF-FKQ" secondAttribute="leading" id="40v-Dh-KRo"/>
@@ -152,18 +140,30 @@
                                     <action selector="didTapBackButton" destination="3sp-Ft-3Yk" eventType="touchUpInside" id="Xd2-xY-OZu"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wyS-pz-zYm" userLabel="didTapShareButton">
+                                <rect key="frame" x="182" y="829" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="cjh-eK-Nu4"/>
+                                    <constraint firstAttribute="width" constant="50" id="ydE-g2-kVs"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="share_button"/>
+                                <connections>
+                                    <action selector="didTapShareButton:" destination="3sp-Ft-3Yk" eventType="touchUpInside" id="aTs-LN-GlM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="EST-RY-iHL"/>
                         <color key="backgroundColor" name="YP Black (iOS)"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Qlv-CF-FKQ" secondAttribute="bottom" id="0Y8-Jv-af0"/>
+                            <constraint firstItem="wyS-pz-zYm" firstAttribute="centerX" secondItem="EST-RY-iHL" secondAttribute="centerX" id="MzN-k3-Do2"/>
                             <constraint firstItem="Qlv-CF-FKQ" firstAttribute="top" secondItem="ssn-uv-UsA" secondAttribute="top" id="Nsf-gy-Pxp"/>
                             <constraint firstItem="EST-RY-iHL" firstAttribute="trailing" secondItem="Qlv-CF-FKQ" secondAttribute="trailing" id="PA5-WS-xqs"/>
                             <constraint firstItem="Suh-qO-cjM" firstAttribute="top" secondItem="EST-RY-iHL" secondAttribute="top" constant="8" id="TT1-qY-cOn"/>
+                            <constraint firstItem="EST-RY-iHL" firstAttribute="bottom" secondItem="wyS-pz-zYm" secondAttribute="bottom" constant="17" id="Y16-YI-byE"/>
                             <constraint firstItem="Qlv-CF-FKQ" firstAttribute="leading" secondItem="EST-RY-iHL" secondAttribute="leading" id="gn4-BU-Rfx"/>
-                            <constraint firstItem="wyS-pz-zYm" firstAttribute="centerX" secondItem="EST-RY-iHL" secondAttribute="centerX" id="hax-fq-YJ6"/>
                             <constraint firstItem="Suh-qO-cjM" firstAttribute="leading" secondItem="EST-RY-iHL" secondAttribute="leading" constant="8" id="mL2-0b-W0t"/>
-                            <constraint firstItem="EST-RY-iHL" firstAttribute="bottom" secondItem="wyS-pz-zYm" secondAttribute="bottom" constant="36" id="qye-Tt-z2E"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cP6-fh-Ha7"/>
