@@ -49,6 +49,8 @@ final class ProfileViewController: UIViewController {
         ])
     }
     
+    
+    
     private func initLabels(view: UIView) {
         let userName = UILabel()
         userName.text = "Екатерина Новикова"
