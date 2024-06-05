@@ -74,33 +74,57 @@
 			children = (
 				5F18544B2BF5FDA5009543AD /* AppDelegate.swift */,
 				5F18544D2BF5FDA5009543AD /* SceneDelegate.swift */,
-				5F45E4272C0B6E6A009EDBA0 /* Constants.swift */,
 				5F45E4292C0B7CAA009EDBA0 /* Auth */,
 				5F9399112BFF748000EF594F /* ProfilieLoading */,
 				5F9050AD2BFA6F2F002CCC4B /* ImagesList */,
 				5F1854512BF5FDA5009543AD /* Main.storyboard */,
-				5F1854592BF5FDA7009543AD /* LaunchScreen.storyboard */,
-				5F18545C2BF5FDA7009543AD /* Info.plist */,
 				5F1854542BF5FDA5009543AD /* ImageFeed.xcdatamodeld */,
+				5F1854592BF5FDA7009543AD /* LaunchScreen.storyboard */,
 				5F7273982C06597F0022350D /* Assets.xcassets */,
+				5F18545C2BF5FDA7009543AD /* Info.plist */,
+				5F45E4352C0D04A6009EDBA0 /* Resources */,
 			);
 			path = ImageFeed;
+			sourceTree = "<group>";
+		};
+		5F1E7A152C1045A700EE2FA9 /* AuthView */ = {
+			isa = PBXGroup;
+			children = (
+				5F45E42A2C0B7CDD009EDBA0 /* AuthViewController.swift */,
+			);
+			path = AuthView;
+			sourceTree = "<group>";
+		};
+		5F1E7A162C1045CC00EE2FA9 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				5F45E42C2C0BA7B8009EDBA0 /* WebViewViewController.swift */,
+			);
+			path = WebView;
 			sourceTree = "<group>";
 		};
 		5F45E4292C0B7CAA009EDBA0 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				5F45E42A2C0B7CDD009EDBA0 /* AuthViewController.swift */,
-				5F45E42C2C0BA7B8009EDBA0 /* WebViewViewController.swift */,
+				5F45E4272C0B6E6A009EDBA0 /* Constants.swift */,
+				5F1E7A152C1045A700EE2FA9 /* AuthView */,
+				5F1E7A162C1045CC00EE2FA9 /* WebView */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		5F45E4352C0D04A6009EDBA0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		5F9050AD2BFA6F2F002CCC4B /* ImagesList */ = {
 			isa = PBXGroup;
 			children = (
-				5F18544F2BF5FDA5009543AD /* ImagesListViewController.swift */,
 				5F9050AB2BFA6F07002CCC4B /* ImagesListCell.swift */,
+				5F18544F2BF5FDA5009543AD /* ImagesListViewController.swift */,
 				5FD830462C02336D00259EDE /* SingleImageView */,
 			);
 			path = ImagesList;
