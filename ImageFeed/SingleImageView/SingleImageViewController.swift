@@ -33,13 +33,7 @@ final class SingleImageViewController: UIViewController {
         }
         
         scrollView.delegate = self
-        
-        //            let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
-        //            doubleTapGesture.numberOfTapsRequired = 2
-        //            imageView.addGestureRecognizer(doubleTapGesture)
-        //            imageView.isUserInteractionEnabled = true
     }
-    
     
     @IBAction private func didTapBackButton() {
         dismiss(animated: true, completion: nil)
@@ -53,7 +47,6 @@ final class SingleImageViewController: UIViewController {
         )
         present(share, animated: true, completion: nil)
     }
-    
     
     private func rescaleAndCenterImageInScrollView(image: UIImage) {
         let minZoomScale = scrollView.minimumZoomScale
@@ -72,16 +65,6 @@ final class SingleImageViewController: UIViewController {
         let yInset = max((visibleRectSize.height - newContentSize.height) * 0.5, 0)
         scrollView.contentInset = UIEdgeInsets(top: yInset, left: xInset, bottom: yInset, right: xInset)
     }
-    
-    //        @objc private func handleDoubleTap(_ gestureRecognizer: UITapGestureRecognizer) {
-    //            if scrollView.zoomScale == scrollView.minimumZoomScale {
-    //                let centerPoint = gestureRecognizer.location(in: imageView)
-    //                let zoomRect = zoomRectForScrollView(scrollView, scale: scrollView.maximumZoomScale, center: centerPoint)
-    //                scrollView.zoom(to: zoomRect, animated: true)
-    //            } else {
-    //                scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
-    //            }
-    //        }
     
     private func zoomRectForScrollView(_ scrollView: UIScrollView, scale: CGFloat, center: CGPoint) -> CGRect {
         var zoomRect = CGRect.zero

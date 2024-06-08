@@ -17,7 +17,7 @@ protocol WebViewViewControllerDelegate: AnyObject {
 //MARK: - class WebViewViewController
 final class WebViewViewController: UIViewController {
     
-    //MARK: - Private Constants
+    //MARK: - Private Constants // +
     enum WebViewConstants {
         static let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
     }
@@ -25,45 +25,59 @@ final class WebViewViewController: UIViewController {
     //MARK: - Public Properties
     weak var delegate: WebViewViewControllerDelegate?
     
-    //MARK: - Private Properties
-    private var estimatedProgressObservation: NSKeyValueObservation?
-    
-    //MARK: - Public Properties
-    var webView: WKWebView!
-    var progressView = UIProgressView()
+    private var webView: WKWebView!
+    private var progressView = UIProgressView()
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .ypWhiteIOS
         initWebView()
-        loadAuthView()
         initProgressView()
+        loadAuthView()
         
-        updateProgress()
         webView.navigationDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
+        webView.addObserver(self,
+                            forKeyPath: #keyPath(WKWebView.estimatedProgress),
+                            options: .new, context: nil)
         updateProgress()
     }
+    // Добавляем наблюдателя, чтобы отслеживать прогресс загрузки страницы
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), context: nil)
+        webView.removeObserver(self,
+                               forKeyPath: #keyPath(WKWebView.estimatedProgress),
+                               context: nil)
     }
+    // Удаляем наблюдателя, чтобы избежать утечек памяти
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath ==  #keyPath(WKWebView.estimatedProgress) {
+    //MARK: - Override Methods
+    override func observeValue(forKeyPath keyPath: String?,  //
+                               of object: Any?,
+                               change: [NSKeyValueChangeKey : Any]?,
+                               context: UnsafeMutableRawPointer?) {
+        if keyPath == #keyPath(WKWebView.estimatedProgress) {
             updateProgress()
         } else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
+    // Вызывается, если изменяется значение наблюдаемого свойства. Если изменения были у estimatedProgress, то вызываем updateProgress
     
+    //MARK: - Action
+    @objc
+    func didTapBackButton(_ sender: Any?) {
+        delegate?.webViewViewControllerDidCancel(self)
+    }
+    // При нажатии на кнопку "Назад", вызывается делегат
+    
+    //MARK: - Private Methods
     private func initWebView() {
         webView = WKWebView(frame: view.bounds)
         
@@ -72,27 +86,35 @@ final class WebViewViewController: UIViewController {
         
         webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
+    // Инициализируем и добавляем webView в VC
     
-    private  func loadAuthView() {
-        guard var urlComponents = URLComponents(string: WebViewConstants.unsplashAuthorizeURLString) else { return }
-        
+    func loadAuthView() {
+        guard var urlComponents = URLComponents(string: WebViewConstants.unsplashAuthorizeURLString) else {
+            print("Authorization page is not found")
+            return
+        }
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: Constants.accessKey),
             URLQueryItem(name: "redirect_uri", value: Constants.redirectURI),
             URLQueryItem(name: "response_type", value: "code"),
             URLQueryItem(name: "scope", value: Constants.accessScope)
         ]
-        
-        guard let url = urlComponents.url else { return }
+        guard let url = urlComponents.url else {
+            print("Authorization page is not found")
+            return
+        }
         let request = URLRequest(url: url)
         webView.load(request)
+        
+        updateProgress()
     }
+    // Загружаем страницу авторизации
     
     private func initProgressView() {
         progressView = UIProgressView(progressViewStyle: .bar)
         
         progressView.progressTintColor = .ypBlackIOS
-        progressView.progress = 0.5
+        progressView.setProgress(0.1, animated: true)
         
         progressView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(progressView)
@@ -103,21 +125,20 @@ final class WebViewViewController: UIViewController {
             progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
+    //  Инициализируем progressView и добавляет его на представление контроллера.
     
     private func updateProgress() {
         progressView.progress = Float(webView.estimatedProgress)
         progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
     }
-    
+    // Обновлям прогресс в progressView в соответствии с прогрессом загрузки webView.
 }
-//MARK: - WKNavigationDelegate
 
+//MARK: - WKNavigationDelegate
 extension WebViewViewController: WKNavigationDelegate {
-    func webView(
-        _ webView: WKWebView,
-        decidePolicyFor navigationAction: WKNavigationAction,
-        decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
-    ) {
+    
+    //MARK: - Methods
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if let code = code(from: navigationAction) {
             delegate?.webViewViewController(self, didAuthenticateWithCode: code)
             decisionHandler(.cancel)
@@ -126,6 +147,15 @@ extension WebViewViewController: WKNavigationDelegate {
         }
     }
     
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        showErrorAlert(withMessage: error.localizedDescription)
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        showErrorAlert(withMessage: error.localizedDescription)
+    }
+    
+    //MARK: - Private Methods
     private func code(from navigationAction: WKNavigationAction) -> String? {
         if
             let url = navigationAction.request.url,
@@ -139,4 +169,12 @@ extension WebViewViewController: WKNavigationDelegate {
             return nil
         }
     }
+    
+    private func showErrorAlert(withMessage message: String) {
+        let alert = UIAlertController(title: "Ошибка загрузки", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true)
+    }
 }
+
+
