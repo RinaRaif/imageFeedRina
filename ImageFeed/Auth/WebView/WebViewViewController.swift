@@ -25,16 +25,18 @@ final class WebViewViewController: UIViewController {
     //MARK: - Public Properties
     weak var delegate: WebViewViewControllerDelegate?
     
-    private var webView: WKWebView!
-    private var progressView = UIProgressView()
+    //MARK: - IBOutlets
+    @IBOutlet private var webView: WKWebView!
+    @IBOutlet private var progressView: UIProgressView!
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .ypWhiteIOS
-        initWebView()
-        initProgressView()
+        
         loadAuthView()
+        configureProgressiveView()
+        updateProgress()
+        configureBackButtonCustom()
         
         webView.navigationDelegate = self
     }
@@ -70,35 +72,34 @@ final class WebViewViewController: UIViewController {
     }
     // Вызывается, если изменяется значение наблюдаемого свойства. Если изменения были у estimatedProgress, то вызываем updateProgress
     
-    //MARK: - Action
-    @objc
-    func didTapBackButton(_ sender: Any?) {
-        delegate?.webViewViewControllerDidCancel(self)
-    }
-    // При нажатии на кнопку "Назад", вызывается делегат
     
     //MARK: - Private Methods
-    private func initWebView() {
-        webView = WKWebView(frame: view.bounds)
-        
-        webView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(webView)
-        
-        webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-    }
-    // Инициализируем и добавляем webView в VC
     
-    func loadAuthView() {
+    private func configureProgressiveView() {
+        progressView.progressViewStyle = .default
+        progressView.progressTintColor = .ypBlackIOS
+        progressView.progress = 0.5
+    }
+    
+    private func updateProgress() {
+        progressView.progress = Float(webView.estimatedProgress)
+        progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
+    }
+    // Обновлям прогресс в progressView в соответствии с прогрессом загрузки webView.
+    
+    private func loadAuthView() {
         guard var urlComponents = URLComponents(string: WebViewConstants.unsplashAuthorizeURLString) else {
             print("Authorization page is not found")
             return
         }
+        
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: Constants.accessKey),
             URLQueryItem(name: "redirect_uri", value: Constants.redirectURI),
             URLQueryItem(name: "response_type", value: "code"),
             URLQueryItem(name: "scope", value: Constants.accessScope)
         ]
+        
         guard let url = urlComponents.url else {
             print("Authorization page is not found")
             return
@@ -110,28 +111,15 @@ final class WebViewViewController: UIViewController {
     }
     // Загружаем страницу авторизации
     
-    private func initProgressView() {
-        progressView = UIProgressView(progressViewStyle: .bar)
-        
-        progressView.progressTintColor = .ypBlackIOS
-        progressView.setProgress(0.1, animated: true)
-        
-        progressView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(progressView)
-        
-        NSLayoutConstraint.activate([
-            progressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+    private func configureBackButtonCustom() {
+        navigationItem.hidesBackButton = true
+        let backButtonCustom = UIBarButtonItem(image: UIImage(named: "nav_back_button"), style: .plain, target: self, action: #selector(didTapBackButtonCustom))
+        navigationItem.leftBarButtonItem = backButtonCustom
     }
-    //  Инициализируем progressView и добавляет его на представление контроллера.
     
-    private func updateProgress() {
-        progressView.progress = Float(webView.estimatedProgress)
-        progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
+    @objc private func didTapBackButtonCustom() {
+        delegate?.webViewViewControllerDidCancel(self)
     }
-    // Обновлям прогресс в progressView в соответствии с прогрессом загрузки webView.
 }
 
 //MARK: - WKNavigationDelegate

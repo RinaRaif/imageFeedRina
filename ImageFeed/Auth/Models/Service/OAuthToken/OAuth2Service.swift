@@ -18,8 +18,6 @@ final class OAuth2Service {
         }
         
         var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "unsplash.com"
         urlComponents.path = Constants.authPath
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: Constants.accessKey),
@@ -29,7 +27,7 @@ final class OAuth2Service {
             URLQueryItem(name: "grant_type", value: "authorization_code")
         ]
         
-        guard let url = urlComponents.url else {
+        guard let url = urlComponents.url(relativeTo: Constants.defaultBaseURL) else {
             print("Failed to create URL")
             return nil
         }
@@ -42,6 +40,8 @@ final class OAuth2Service {
     //MARK: - Methods
     func fetchOAuthToken(with code: String, completion: @escaping (Result<String, Error>) -> Void) {
         guard let request = makeOAuthTokenRequest(code: code) else {
+            completion(.failure(URLError(.badURL)))
+            print("Authorization code is nil or failed to create URL")
             return
         }
         
@@ -63,5 +63,4 @@ final class OAuth2Service {
         }
         task.resume()
     }
-    
 }

@@ -5,7 +5,6 @@
 //  Created by Рина Райф on 08.06.2024.
 //
 
-
 import UIKit
 
 ///MARK: - SplashViewController
@@ -66,11 +65,10 @@ extension SplashViewController: AuthViewControllerDelegate {
         oAuth2Service.fetchOAuthToken(with: code) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .success:
-                self.switchToTabBarController()
-                return
+                case .success:
+                    self.switchToTabBarController()
+                    return
                 case .failure(let error):
-                    // Обрабатываем ошибку получения токена
                     print("Ошибка при получении OAuth токена: \(error.localizedDescription)")
             }
         }

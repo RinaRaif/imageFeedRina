@@ -228,7 +228,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Oqa-NL-v4F">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarViewController" id="bcY-3A-BSq" sceneMemberID="viewController">
+                <tabBarController restorationIdentifier="TabBarViewController" storyboardIdentifier="TabBarViewController" id="bcY-3A-BSq" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="LzO-Ll-6dR"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rDk-7A-DGs">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
@@ -324,10 +324,36 @@
                     <view key="view" contentMode="scaleToFill" id="beX-cK-nIR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="orD-oo-nOK">
+                                <rect key="frame" x="0.0" y="56" width="414" height="830"/>
+                                <color key="backgroundColor" name="YP White (iOS)"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jq1-Xg-abk">
+                                <rect key="frame" x="0.0" y="56" width="414" height="4"/>
+                            </progressView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="0dN-5X-y3T"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="orD-oo-nOK" firstAttribute="leading" secondItem="beX-cK-nIR" secondAttribute="leading" id="Aa7-BD-ACi"/>
+                            <constraint firstItem="jq1-Xg-abk" firstAttribute="leading" secondItem="0dN-5X-y3T" secondAttribute="leading" id="BFt-jy-kmz"/>
+                            <constraint firstItem="jq1-Xg-abk" firstAttribute="top" secondItem="0dN-5X-y3T" secondAttribute="top" id="KTT-Sy-Sym"/>
+                            <constraint firstAttribute="bottom" secondItem="orD-oo-nOK" secondAttribute="bottom" id="Q6f-0c-dEs"/>
+                            <constraint firstAttribute="trailing" secondItem="orD-oo-nOK" secondAttribute="trailing" id="g0W-Gr-cE1"/>
+                            <constraint firstItem="orD-oo-nOK" firstAttribute="top" secondItem="0dN-5X-y3T" secondAttribute="top" id="mYq-TS-KdF"/>
+                            <constraint firstItem="jq1-Xg-abk" firstAttribute="trailing" secondItem="0dN-5X-y3T" secondAttribute="trailing" id="nky-Ge-Erb"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" style="editor" id="wJy-qz-fqX"/>
+                    <navigationItem key="navigationItem" id="wJy-qz-fqX"/>
+                    <connections>
+                        <outlet property="progressView" destination="jq1-Xg-abk" id="hmz-NS-Jx7"/>
+                        <outlet property="webView" destination="orD-oo-nOK" id="1VX-0s-Nab"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V0v-3y-8Fg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
