@@ -9,6 +9,14 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     
+    //MARK: - Override Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initProfileImage (view: view)
+        initLogoutButton(view: view)
+        initLabels(view: view)
+    }
+    
     // MARK: - Private Methods
     
     private func initProfileImage (view: UIView) {
@@ -89,26 +97,21 @@ final class ProfileViewController: UIViewController {
         
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        initProfileImage (view: view)
-        initLogoutButton(view: view)
-        initLabels(view: view)
-    }
-    
     @objc
     private func didTapLogoutButton() {
-        for view in view.subviews {
-            if view is UILabel {
-                view.removeFromSuperview()
-            } else {
-                if let imageView = view as? UIImageView {
-                    imageView.image = UIImage(named: "tab_profile_no_active")
-                    imageView.tintColor = .ypGrayIOS
-                }
-            }
+        let alertController = UIAlertController(title: "Пока, пока?",
+                                                message: "Уверены, что хотите выйти?",
+                                                preferredStyle: .alert)
+        
+        let logoutAction = UIAlertAction(title: "Да", style: .default) { action in
         }
         
+        alertController.addAction(logoutAction)
+        
+        let cancelAction = UIAlertAction(title: "Нет", style: .default)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true)
     }
 }
 
