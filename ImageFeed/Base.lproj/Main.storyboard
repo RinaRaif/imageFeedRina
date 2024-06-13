@@ -251,10 +251,10 @@
         <!--Navigation Controller-->
         <scene sceneID="2Tj-fl-sLk">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iLo-bq-tdM" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="overFullScreen" id="iLo-bq-tdM" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="O4F-Vq-A2v"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gXg-4A-VkI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -268,7 +268,7 @@
         <!--Auth View Controller-->
         <scene sceneID="tPf-Uk-xav">
             <objects>
-                <viewController storyboardIdentifier="AuthViewController" id="gvr-jW-Et4" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AuthViewController" modalPresentationStyle="overFullScreen" id="gvr-jW-Et4" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dmi-kx-4cN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -294,6 +294,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="15"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="ceL-pb-aVg" kind="show" identifier="ShowWebView" id="IhD-am-gam"/>
@@ -320,7 +321,7 @@
         <!--Web View View Controller-->
         <scene sceneID="JTw-BE-bL0">
             <objects>
-                <viewController id="ceL-pb-aVg" customClass="WebViewViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="ceL-pb-aVg" customClass="WebViewViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="beX-cK-nIR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

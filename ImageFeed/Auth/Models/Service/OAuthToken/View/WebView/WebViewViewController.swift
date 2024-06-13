@@ -74,7 +74,6 @@ final class WebViewViewController: UIViewController {
     
     
     //MARK: - Private Methods
-    
     private func configureProgressiveView() {
         progressView.progressViewStyle = .default
         progressView.progressTintColor = .ypBlackIOS
@@ -135,14 +134,6 @@ extension WebViewViewController: WKNavigationDelegate {
         }
     }
     
-    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        showErrorAlert(withMessage: error.localizedDescription)
-    }
-    
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        showErrorAlert(withMessage: error.localizedDescription)
-    }
-    
     //MARK: - Private Methods
     private func code(from navigationAction: WKNavigationAction) -> String? {
         if
@@ -157,12 +148,4 @@ extension WebViewViewController: WKNavigationDelegate {
             return nil
         }
     }
-    
-    private func showErrorAlert(withMessage message: String) {
-        let alert = UIAlertController(title: "Ошибка загрузки", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        self.present(alert, animated: true)
-    }
 }
-
-

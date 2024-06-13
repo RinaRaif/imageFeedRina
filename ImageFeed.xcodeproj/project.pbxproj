@@ -117,10 +117,7 @@
 		5F45E4292C0B7CAA009EDBA0 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				5F45E4272C0B6E6A009EDBA0 /* Constants.swift */,
 				5FD2F7992C149AAA00B81605 /* Models */,
-				5F1E7A152C1045A700EE2FA9 /* AuthView */,
-				5F1E7A162C1045CC00EE2FA9 /* WebView */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -159,11 +156,21 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		5FC595FE2C18B6F000FD0DB1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5F1E7A162C1045CC00EE2FA9 /* WebView */,
+				5F1E7A152C1045A700EE2FA9 /* AuthView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		5FD2F7962C14990C00B81605 /* OAuthToken */ = {
 			isa = PBXGroup;
 			children = (
 				5FA5113F2C121CE600A8E975 /* OAuth2Service.swift */,
 				5FD2F79A2C149B1500B81605 /* OAuth2TokenStorage.swift */,
+				5FC595FE2C18B6F000FD0DB1 /* View */,
 			);
 			path = OAuthToken;
 			sourceTree = "<group>";
@@ -195,6 +202,7 @@
 		5FD2F7A02C14F5CB00B81605 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				5F45E4272C0B6E6A009EDBA0 /* Constants.swift */,
 				5F18544D2BF5FDA5009543AD /* SceneDelegate.swift */,
 				5F18544B2BF5FDA5009543AD /* AppDelegate.swift */,
 			);
@@ -454,7 +462,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -485,7 +494,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

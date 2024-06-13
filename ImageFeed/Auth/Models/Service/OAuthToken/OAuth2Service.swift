@@ -9,6 +9,9 @@ import Foundation
 
 //MARK: - OAuth2Service
 final class OAuth2Service {
+    static let shared = OAuth2Service()
+    
+    private init() {}
     
     //MARK: - Private Methods
     private func makeOAuthTokenRequest(code: String?) -> URLRequest? {
